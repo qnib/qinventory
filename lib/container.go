@@ -5,13 +5,13 @@ import (
 // Container holds informations about a container
 type Container struct {
     types.Container
-    Machine Machine
+    Engine DockerEngine
 }
 
 // NewContainer returns a container instance
-func NewContainer(c types.Container, m Machine) (Container, error) {
+func NewContainer(c types.Container, e DockerEngine) (Container, error) {
     return Container{
         Container: c,
-        Machine: m,
+        Engine: e,
     }, nil
 }

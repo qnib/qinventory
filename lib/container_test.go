@@ -9,15 +9,19 @@ import (
 
 // Test the instanciation of a PhysicalMachine
 func TestNewContainer(t *testing.T) {
+    m, _ := NewMachine("hostname","4.7.10")
+    d := DockerEngine{
+        DockerHost: "unix:///var/run/docker.sock",
+        Machine: m,
+    }
     c := types.Container{
         ID: "container_id",
         Names: []string{"/container_name"},
     }
-    m, _ := NewMachine("hostname","4.7.10")
     exp := Container{
         Container: c,
-        Machine: m,
+        Engine: d,
     }
-    got, _ := NewContainer(c, m)
+    got, _ := NewContainer(c, d)
     assert.Equal(t, exp, got)
 }
