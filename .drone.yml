@@ -1,0 +1,11 @@
+build:
+    image: qnib/golang
+    pull: true
+    commands:
+     - ./test.sh
+    environment:
+     - GOPATH=/drone/
+publish:
+  coverage:
+    server: http://wins.ddns.net:8008
+    token: $$GITHUB_API_KEY
