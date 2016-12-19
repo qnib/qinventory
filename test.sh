@@ -4,8 +4,10 @@ set -xe
 govendor fetch +missing
 echo "> govendor remove +unused"
 govendor remove +unused
-echo "> govendor sync"
-govendor sync
+echo "> govendor sync +external"
+govendor sync +external
+echo "> govendor update +local"
+govendor update +local
 if [ ! -d resources/coverity ];then
     mkdir -p resources/coverity
 fi

@@ -10,8 +10,13 @@ type Container struct {
 }
 
 // NewContainer returns a container instance
-func NewContainer(c types.Container, e DockerEngine) (Container, error) {
+func NewContainer(c types.Container) (Container, error) {
 	return Container{
 		Container: c,
 	}, nil
+}
+
+// GetID returns the ID of the container, which will be used as unique identifier in the backends
+func (c *Container) GetID() string {
+	return c.ID
 }

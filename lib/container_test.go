@@ -9,9 +9,6 @@ import (
 
 // Test the instanciation of a PhysicalMachine
 func TestNewContainer(t *testing.T) {
-	d := DockerEngine{
-		DockerHost: "unix:///var/run/docker.sock",
-	}
 	c := types.Container{
 		ID:    "container_id",
 		Names: []string{"/container_name"},
@@ -19,6 +16,17 @@ func TestNewContainer(t *testing.T) {
 	exp := Container{
 		Container: c,
 	}
-	got, _ := NewContainer(c, d)
+	got, _ := NewContainer(c)
 	assert.Equal(t, exp, got)
+}
+
+// TestGetID checks if the ID is returned correctly
+func TestGetID(t *testing.T) {
+	c := types.Container{
+		ID:    "container_id",
+		Names: []string{"/container_name"},
+	}
+	cnt, _ := NewContainer(c)
+	got := cnt.GetID()
+	assert.Equal(t, "container_id", got)
 }
