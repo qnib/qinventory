@@ -81,6 +81,12 @@
 			"revisionTime": "2016-11-30T22:15:31Z"
 		},
 		{
+			"checksumSHA1": "GUAttOU9h1pXlA3N1ycQPhVFEd8=",
+			"path": "github.com/mkindahl/gograph/directed",
+			"revision": "331fbd9dc59c37f584b684ca59b452a815c8b977",
+			"revisionTime": "2014-12-25T20:45:49Z"
+		},
+		{
 			"checksumSHA1": "LuFv4/jlrmFNnDb/5SCSEPAM9vU=",
 			"path": "github.com/pmezard/go-difflib/difflib",
 			"revision": "792786c7400a136282c1664665ae0a8db921c6c2",
@@ -89,14 +95,14 @@
 		{
 			"checksumSHA1": "BZGf1zJmUrnHACW3tmXTZ5GV3j0=",
 			"path": "github.com/qnib/qinventory/backend",
-			"revision": "32dfc6e74292d218701bf016b129805f3b01b28b",
-			"revisionTime": "2016-12-19T13:02:33Z"
+			"revision": "d605b014831aabb923e65b6aaa1c881ab2e41a11",
+			"revisionTime": "2016-12-19T13:33:33Z"
 		},
 		{
 			"checksumSHA1": "vZmi2/9dgREC/wIOAV8wUcjwje0=",
 			"path": "github.com/qnib/qinventory/lib",
-			"revision": "32dfc6e74292d218701bf016b129805f3b01b28b",
-			"revisionTime": "2016-12-19T13:02:33Z"
+			"revision": "d605b014831aabb923e65b6aaa1c881ab2e41a11",
+			"revisionTime": "2016-12-19T13:33:33Z"
 		},
 		{
 			"checksumSHA1": "JXUVA1jky8ZX8w09p2t5KLs97Nc=",
