@@ -1,9 +1,12 @@
 package backend
 
 import (
+    "sort"
+    "fmt"
+    "errors"
+
 	"github.com/mkindahl/gograph/directed"
 	qinv "github.com/qnib/qinventory/lib"
-    "sort"
 )
 
 // QGraph holds the inventory graph
@@ -31,15 +34,15 @@ func (qg *QGraph) GetNodeIDs() ([]string, error) {
 }
 
 // IsSubset returns true if all ids provided are within the Nodes
-func (qg *QGraph) IsSubset(ids []string) bool {
+func (qg *QGraph) IsSubset(keys []string) bool {
     all, _ := qg.GetNodeIDs()
     for i := range all {
-        for _, s := range ids {
+        for _, s := range keys {
             if s == all[i] {
-                if len(ids) == 1 {
+                if len(keys) == 1 {
                     return true
                 }
-                ids = append(ids[:i], ids[i+1:]...)
+                keys = append(keys[:i], keys[i+1:]...)
             }
         }
     }
@@ -65,13 +68,14 @@ func (qg *QGraph) AddNode(e qinv.QEntity) (*QGraph, error) {
 	return qg, nil
 }
 
-/*
 // AddEdge connects to entities
 func (qg *QGraph) AddEdge(x,y qinv.QEntity) (*QGraph, error) {
-    for k := range qg.Nodes {
-
+    ids := []string{x.GetID(),y.GetID()}
+    c := []string{x.GetID(),y.GetID()}
+    if ! qg.IsSubset(ids) {
+        msg := fmt.Sprintf("id not in graph: %s, %s", c[0], c[1])
+        return qg, errors.New(msg)
     }
     qg.Graph.AddEdge(x.GetID(), y.GetID())
     return qg, nil
 }
-*/

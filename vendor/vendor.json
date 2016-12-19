@@ -93,16 +93,16 @@
 			"revisionTime": "2016-01-10T10:55:54Z"
 		},
 		{
-			"checksumSHA1": "OQMJYFtc9jn9wVqCr5Ko5bXJUkU=",
+			"checksumSHA1": "q7+xM8GbfOWnDBs05hpKaH6wktg=",
 			"path": "github.com/qnib/qinventory/backend",
-			"revision": "dfc363c64bdaf82c7075131135c52837511f5fb8",
-			"revisionTime": "2016-12-19T18:33:57Z"
+			"revision": "9d2e18b8ef293890a07d9cc902b1a12aeb8075ca",
+			"revisionTime": "2016-12-19T19:00:58Z"
 		},
 		{
 			"checksumSHA1": "vZmi2/9dgREC/wIOAV8wUcjwje0=",
 			"path": "github.com/qnib/qinventory/lib",
-			"revision": "dfc363c64bdaf82c7075131135c52837511f5fb8",
-			"revisionTime": "2016-12-19T18:33:57Z"
+			"revision": "9d2e18b8ef293890a07d9cc902b1a12aeb8075ca",
+			"revisionTime": "2016-12-19T19:00:58Z"
 		},
 		{
 			"checksumSHA1": "JXUVA1jky8ZX8w09p2t5KLs97Nc=",

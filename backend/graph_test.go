@@ -2,6 +2,7 @@ package backend
 
 import (
 	"testing"
+    "fmt"
 
 	"github.com/mkindahl/gograph/directed"
 	qinv "github.com/qnib/qinventory/lib"
@@ -63,4 +64,20 @@ func TestIDinNodes(t *testing.T) {
     g.AddNode(m3.GetMe())
     assert.True(t, g.IDinNodes("host1"))
     assert.False(t, g.IDinNodes("host4"))
+}
+
+// Check AddEdge
+func TestAddEdge(t *testing.T) {
+    g, _ := NewQGraph()
+    m1, _ := qinv.NewMachine("host1", "4.7.10")
+    m2, _ := qinv.NewMachine("host2", "4.7.10")
+    m3, _ := qinv.NewMachine("host3", "4.7.10")
+    g.AddNode(m1.GetMe())
+    g.AddNode(m2.GetMe())
+    g.AddEdge(m1.GetMe(), m2.GetMe())
+    assert.True(t, g.Graph.HasEdge(m1.GetID(), m2.GetID()))
+    assert.False(t, g.Graph.HasEdge(m2.GetID(), m1.GetID()))
+    _, err := g.AddEdge(m1.GetMe(), m3.GetMe())
+    assert.Equal(t, "id not in graph: host1, host3", fmt.Sprintf("%s", err))
+
 }
