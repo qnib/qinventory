@@ -34,3 +34,33 @@ func TestAddEntity(t *testing.T) {
 	assert.EqualValues(t, exp.Nodes, got.Nodes)
 
 }
+
+// Check IsSubset
+func TestIDsAndIsSubset(t *testing.T) {
+    g, _ := NewQGraph()
+    m1, _ := qinv.NewMachine("host1", "4.7.10")
+    m2, _ := qinv.NewMachine("host2", "4.7.10")
+    m3, _ := qinv.NewMachine("host3", "4.7.10")
+    g.AddNode(m1.GetMe())
+    g.AddNode(m2.GetMe())
+    g.AddNode(m3.GetMe())
+    got, _ := g.GetNodeIDs()
+    assert.Equal(t, []string{"host1", "host2", "host3"}, got)
+    ids := []string{"host1", "host2"}
+    assert.True(t, g.IsSubset(ids))
+    ids = []string{"host1", "host4"}
+    assert.False(t, g.IsSubset(ids))
+}
+
+// Check IDinNodes
+func TestIDinNodes(t *testing.T) {
+    g, _ := NewQGraph()
+    m1, _ := qinv.NewMachine("host1", "4.7.10")
+    m2, _ := qinv.NewMachine("host2", "4.7.10")
+    m3, _ := qinv.NewMachine("host3", "4.7.10")
+    g.AddNode(m1.GetMe())
+    g.AddNode(m2.GetMe())
+    g.AddNode(m3.GetMe())
+    assert.True(t, g.IDinNodes("host1"))
+    assert.False(t, g.IDinNodes("host4"))
+}
