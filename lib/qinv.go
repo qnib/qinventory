@@ -1,14 +1,12 @@
 package qinv
 
-import (
-    //"github.com/twmb/algoimpl/go/graph"
-    //"encoding/json"
-)
+//"github.com/twmb/algoimpl/go/graph"
+//"encoding/json"
 
 // QInventory provides an interface for all backends
 type QInventory interface {
-    AddMachine(m Machine)
-    AddContainer(c Container)
+	AddMachine(m Machine)
+	AddContainer(c Container)
 }
 
 /*
