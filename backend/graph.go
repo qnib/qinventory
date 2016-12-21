@@ -8,7 +8,11 @@ import (
 	"net/http"
 	"sort"
 
+	"github.com/opentracing-contrib/go-stdlib/nethttp"
+
 	"github.com/gorilla/mux"
+	jaeger "github.com/uber/jaeger-client-go"
+	"github.com/uber/jaeger-client-go/transport/zipkin"
 
 	"github.com/mkindahl/gograph/directed"
 	qinv "github.com/qnib/qinventory/lib"
@@ -106,13 +110,28 @@ func (qg *QGraph) AddEdge(x, y qinv.QEntity) (*QGraph, error) {
 
 // StartHttpd creates a http serverPort
 func (qg *QGraph) StartHttpd() {
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", qg.Index).Methods("GET")
-	router.HandleFunc("/machines", qg.ListMachines).Methods("GET")
-	router.HandleFunc("/machine/{id}", qg.GetMachine).Methods("GET")
-	router.HandleFunc("/machine/{id}", qg.AddMachine).Methods("POST")
+	transport, err := zipkin.NewHTTPTransport(
+		"http://localhost:9411/api/v1/spans",
+		zipkin.HTTPBatchSize(1),
+		zipkin.HTTPLogger(jaeger.StdLogger),
+	)
+	if err != nil {
+		log.Fatalf("Cannot initialize HTTP transport: %v", err)
+	}
+	// create Jaeger tracer
+	tracer, _ := jaeger.NewTracer(
+		"server",
+		jaeger.NewConstSampler(true), // sample all traces
+		jaeger.NewRemoteReporter(transport, nil),
+	)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	//router := mux.NewRouter().StrictSlash(true)
+	http.HandleFunc("/machine/{id}", qg.Machine)
+	http.HandleFunc("/machine", qg.Machine)
+	http.HandleFunc("/machines", qg.ListMachines)
+	http.HandleFunc("/", qg.Index)
+	log.Println("Starting server on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", nethttp.Middleware(tracer, http.DefaultServeMux)))
 }
 
 // Index shows the entry page
@@ -125,36 +144,33 @@ func (qg *QGraph) ListMachines(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Todo Index!")
 }
 
-// GetMachine fetches one machine
-func (qg *QGraph) GetMachine(w http.ResponseWriter, r *http.Request) {
+// Machine handles GET/POST for a machine
+func (qg *QGraph) Machine(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
-	m, err := qg.GetNode(id)
-	if err != nil {
-		http.Error(w, fmt.Sprintf("No node with id '%s'", id), 500)
+	switch r.Method {
+	case "GET":
+		m, err := qg.GetNode(id)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("No node with id '%s'", id), 500)
+		}
+		b, _ := json.Marshal(m)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(b)
+	case "POST":
+		decoder := json.NewDecoder(r.Body)
+		var m qinv.Machine
+		err := decoder.Decode(&m)
+		if err != nil {
+			panic(err)
+		}
+		defer r.Body.Close()
+		err = qg.SetNode(m.GetMe())
+		if err != nil {
+			panic(err)
+		}
+		b, _ := json.Marshal(m)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(b)
 	}
-	b, _ := json.Marshal(m)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(b)
-}
-
-// AddMachine adds a machine to the graph
-func (qg *QGraph) AddMachine(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	id := vars["id"]
-	decoder := json.NewDecoder(r.Body)
-	var m qinv.Machine
-	err := decoder.Decode(&m)
-	if err != nil {
-		panic(err)
-	}
-	defer r.Body.Close()
-	err = qg.SetNode(m.GetMe())
-	if err != nil {
-		panic(err)
-	}
-	m.ID = id
-	b, _ := json.Marshal(m)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(b)
 }

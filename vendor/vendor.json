@@ -81,6 +81,12 @@
 			"revisionTime": "2016-11-30T22:15:31Z"
 		},
 		{
+			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
+			"path": "github.com/inconshreveable/mousetrap",
+			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
+			"revisionTime": "2014-10-17T20:07:13Z"
+		},
+		{
 			"checksumSHA1": "GUAttOU9h1pXlA3N1ycQPhVFEd8=",
 			"path": "github.com/mkindahl/gograph/directed",
 			"revision": "331fbd9dc59c37f584b684ca59b452a815c8b977",
@@ -95,32 +101,32 @@
 		{
 			"checksumSHA1": "U8Zq+WgSTLVnUthqfnYK5wl3XyI=",
 			"path": "github.com/qnib/qinventory",
-			"revision": "afc3e099d701c470b0537f626b1ab930e22cf0ac",
-			"revisionTime": "2016-12-21T10:23:52Z"
+			"revision": "8a75a03f2f062d075f9af6b90616624ef453aec3",
+			"revisionTime": "2016-12-21T13:01:31Z"
 		},
 		{
-			"checksumSHA1": "4luJiA45dvma27ZRUp8dlJktLFg=",
+			"checksumSHA1": "nYEvaBNLJykOFUjNuqIaHM+fS9o=",
 			"path": "github.com/qnib/qinventory/backend",
-			"revision": "afc3e099d701c470b0537f626b1ab930e22cf0ac",
-			"revisionTime": "2016-12-21T10:23:52Z"
+			"revision": "8a75a03f2f062d075f9af6b90616624ef453aec3",
+			"revisionTime": "2016-12-21T13:01:31Z"
 		},
 		{
 			"checksumSHA1": "4/wqIIltYUCu0DKezIAAjhBdun0=",
 			"path": "github.com/qnib/qinventory/cmd",
-			"revision": "afc3e099d701c470b0537f626b1ab930e22cf0ac",
-			"revisionTime": "2016-12-21T10:23:52Z"
+			"revision": "8a75a03f2f062d075f9af6b90616624ef453aec3",
+			"revisionTime": "2016-12-21T13:01:31Z"
 		},
 		{
 			"checksumSHA1": "vZmi2/9dgREC/wIOAV8wUcjwje0=",
 			"path": "github.com/qnib/qinventory/lib",
-			"revision": "afc3e099d701c470b0537f626b1ab930e22cf0ac",
-			"revisionTime": "2016-12-21T10:23:52Z"
+			"revision": "8a75a03f2f062d075f9af6b90616624ef453aec3",
+			"revisionTime": "2016-12-21T13:01:31Z"
 		},
 		{
 			"checksumSHA1": "SPw9blvjhDjWfqeJ03ha22t0Fsg=",
 			"path": "github.com/qnib/qinventory/server",
-			"revision": "afc3e099d701c470b0537f626b1ab930e22cf0ac",
-			"revisionTime": "2016-12-21T10:23:52Z"
+			"revision": "8a75a03f2f062d075f9af6b90616624ef453aec3",
+			"revisionTime": "2016-12-21T13:01:31Z"
 		},
 		{
 			"checksumSHA1": "JXUVA1jky8ZX8w09p2t5KLs97Nc=",
