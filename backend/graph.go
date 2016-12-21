@@ -125,13 +125,12 @@ func (qg *QGraph) StartHttpd() {
 		jaeger.NewRemoteReporter(transport, nil),
 	)
 
-	//router := mux.NewRouter().StrictSlash(true)
-	http.HandleFunc("/machine/{id}", qg.Machine)
-	http.HandleFunc("/machine", qg.Machine)
-	http.HandleFunc("/machines", qg.ListMachines)
-	http.HandleFunc("/", qg.Index)
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/machine/{id}", qg.Machine)
+	router.HandleFunc("/machines", qg.ListMachines)
+	router.HandleFunc("/", qg.Index)
 	log.Println("Starting server on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", nethttp.Middleware(tracer, http.DefaultServeMux)))
+	log.Fatal(http.ListenAndServe(":8080", nethttp.Middleware(tracer, router)))
 }
 
 // Index shows the entry page
