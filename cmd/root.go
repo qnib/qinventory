@@ -23,6 +23,8 @@ import (
 )
 
 var cfgFile string
+var enableZipkin bool
+
 
 // RootCmd This represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -47,7 +49,7 @@ func init() {
 	// Cobra supports Persistent Flags, which, if defined here,
 	// will be global for your application.
 
-	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.qnib/go-github.yaml)")
+	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.qnib/qinventory.yml)")
 
 }
 

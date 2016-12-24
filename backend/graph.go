@@ -16,12 +16,14 @@ import (
 
 	"github.com/mkindahl/gograph/directed"
 	qinv "github.com/qnib/qinventory/lib"
+	"github.com/spf13/cast"
 )
 
 // QGraph holds the inventory graph
 type QGraph struct {
 	Graph *directed.Graph
 	Nodes map[string]qinv.QEntity
+
 }
 
 // NewQGraph returns a new Graph
@@ -108,29 +110,40 @@ func (qg *QGraph) AddEdge(x, y qinv.QEntity) (*QGraph, error) {
 	return qg, nil
 }
 
-// StartHttpd creates a http serverPort
-func (qg *QGraph) StartHttpd() {
-	transport, err := zipkin.NewHTTPTransport(
-		"http://localhost:9411/api/v1/spans",
-		zipkin.HTTPBatchSize(1),
-		zipkin.HTTPLogger(jaeger.StdLogger),
-	)
-	if err != nil {
-		log.Fatalf("Cannot initialize HTTP transport: %v", err)
-	}
-	// create Jaeger tracer
-	tracer, _ := jaeger.NewTracer(
-		"server",
-		jaeger.NewConstSampler(true), // sample all traces
-		jaeger.NewRemoteReporter(transport, nil),
-	)
+// Configure sets
 
+// StartHttpd creates a http serverPort
+func (qg *QGraph) StartHttpd(c map[string]string) {
+	z := cast.ToBool(c["enable-zipkin"])
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/machine/{id}", qg.Machine)
 	router.HandleFunc("/machines", qg.ListMachines)
 	router.HandleFunc("/", qg.Index)
-	log.Println("Starting server on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", nethttp.Middleware(tracer, router)))
+	// if zipkin is enabled, replace the router with middleware
+	if z {
+		log.Println("Enable zipkin tracing")
+		transport, err := zipkin.NewHTTPTransport(
+			c["zipkin-url"],
+			zipkin.HTTPBatchSize(1),
+			zipkin.HTTPLogger(jaeger.StdLogger),
+		)
+		if err != nil {
+			log.Fatalf("Cannot initialize HTTP transport: %v", err)
+		}
+		// create Jaeger tracer
+		tracer, _ := jaeger.NewTracer(
+			"server",
+			jaeger.NewConstSampler(true), // sample all traces
+			jaeger.NewRemoteReporter(transport, nil),
+		)
+	    	r := nethttp.Middleware(tracer, router)
+		log.Println("Starting server on port 8080")
+		log.Fatal(http.ListenAndServe(":8080", r))
+    	} else {
+		log.Println("Starting server on port 8080")
+		log.Fatal(http.ListenAndServe(":8080", router))
+	}
+
 }
 
 // Index shows the entry page
