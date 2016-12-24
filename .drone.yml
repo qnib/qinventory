@@ -2,6 +2,7 @@ build:
     image: qnib/golang
     pull: true
     commands:
+     - go version
      - ./test.sh
     environment:
      - GOPATH=/drone/
