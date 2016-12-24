@@ -243,19 +243,19 @@
 			"revisionTime": "2016-01-10T10:55:54Z"
 		},
 		{
-			"checksumSHA1": "7BCjTND3dbmD3fBMNL/GGWafrBI=",
+			"checksumSHA1": "ueD87xMCOns3BvFk99pqcxJmOww=",
 			"path": "github.com/qnib/qinventory",
 			"revision": "dd58ec5ecb16e012a08aacb6c365ddaa14e3276e",
 			"revisionTime": "2016-12-21T13:49:32Z"
 		},
 		{
-			"checksumSHA1": "LwXEeyHtHdQyuJgrgthFvU/q1rY=",
+			"checksumSHA1": "DO0B/ZZBKp6MKa+kOxtPel689lQ=",
 			"path": "github.com/qnib/qinventory/backend",
 			"revision": "dd58ec5ecb16e012a08aacb6c365ddaa14e3276e",
 			"revisionTime": "2016-12-21T13:49:32Z"
 		},
 		{
-			"checksumSHA1": "b22fklP8rhv8RzJf/P989bJU/6Q=",
+			"checksumSHA1": "VbOUOkugmL4Da7SUV4yhNUMWbio=",
 			"path": "github.com/qnib/qinventory/cmd",
 			"revision": "dd58ec5ecb16e012a08aacb6c365ddaa14e3276e",
 			"revisionTime": "2016-12-21T13:49:32Z"
@@ -267,7 +267,7 @@
 			"revisionTime": "2016-12-21T13:49:32Z"
 		},
 		{
-			"checksumSHA1": "Y61pDHhfLr4xdxjqU1jbtZryajo=",
+			"checksumSHA1": "MUtLYnxfXqy8rgNXoeTeAmrwgt8=",
 			"path": "github.com/qnib/qinventory/server",
 			"revision": "dd58ec5ecb16e012a08aacb6c365ddaa14e3276e",
 			"revisionTime": "2016-12-21T13:49:32Z"
