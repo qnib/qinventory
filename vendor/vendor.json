@@ -229,34 +229,34 @@
 			"revisionTime": "2016-01-10T10:55:54Z"
 		},
 		{
-			"checksumSHA1": "7BCjTND3dbmD3fBMNL/GGWafrBI=",
+			"checksumSHA1": "d3DW2i7mhLHNYgw2X3Ww6yrLkio=",
 			"path": "github.com/qnib/qinventory",
-			"revision": "135198cc2330710f0281e71f9ada972d83add351",
-			"revisionTime": "2016-12-24T11:51:41Z"
+			"revision": "ce8d0623812202f07267363ca5797ff4b9d40710",
+			"revisionTime": "2016-12-24T13:48:34Z"
 		},
 		{
 			"checksumSHA1": "+jEApyWyH9SHWYaScp5KX+xOLFo=",
 			"path": "github.com/qnib/qinventory/backend",
-			"revision": "135198cc2330710f0281e71f9ada972d83add351",
-			"revisionTime": "2016-12-24T11:51:41Z"
+			"revision": "ce8d0623812202f07267363ca5797ff4b9d40710",
+			"revisionTime": "2016-12-24T13:48:34Z"
 		},
 		{
 			"checksumSHA1": "ay77IfxRYZPCowuIZWtapFLpN1w=",
 			"path": "github.com/qnib/qinventory/cmd",
-			"revision": "135198cc2330710f0281e71f9ada972d83add351",
-			"revisionTime": "2016-12-24T11:51:41Z"
+			"revision": "ce8d0623812202f07267363ca5797ff4b9d40710",
+			"revisionTime": "2016-12-24T13:48:34Z"
 		},
 		{
 			"checksumSHA1": "vZmi2/9dgREC/wIOAV8wUcjwje0=",
 			"path": "github.com/qnib/qinventory/lib",
-			"revision": "135198cc2330710f0281e71f9ada972d83add351",
-			"revisionTime": "2016-12-24T11:51:41Z"
+			"revision": "ce8d0623812202f07267363ca5797ff4b9d40710",
+			"revisionTime": "2016-12-24T13:48:34Z"
 		},
 		{
 			"checksumSHA1": "Y61pDHhfLr4xdxjqU1jbtZryajo=",
 			"path": "github.com/qnib/qinventory/server",
-			"revision": "135198cc2330710f0281e71f9ada972d83add351",
-			"revisionTime": "2016-12-24T11:51:41Z"
+			"revision": "ce8d0623812202f07267363ca5797ff4b9d40710",
+			"revisionTime": "2016-12-24T13:48:34Z"
 		},
 		{
 			"checksumSHA1": "KEzQv4I7c+tcoTizQM+tavqKsuM=",
