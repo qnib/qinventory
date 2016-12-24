@@ -3,6 +3,8 @@ package cmd
 import (
 	"github.com/qnib/qinventory/server"
 	"github.com/spf13/cobra"
+    "github.com/spf13/viper"
+
 )
 
 // watchSrv loops over nodes, services and tasks
@@ -15,14 +17,11 @@ var qServer = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(qServer)
-
-	/*RootCmd.PersistentFlags().String("collectors", "Gelf,DockerEvents", "Comma separated list of collectors to start")
-	viper.BindPFlag("collectors", RootCmd.PersistentFlags().Lookup("collectors"))
-	RootCmd.PersistentFlags().Int("ticker-interval", 15000, "Interval of global ticker in milliseconds")
-	viper.BindPFlag("ticker-interval", RootCmd.PersistentFlags().Lookup("ticker-interval"))
-	RootCmd.PersistentFlags().Int("gelf-port", 12201, "UDP port of GELF collector")
-	viper.BindPFlag("gelf-port", RootCmd.PersistentFlags().Lookup("gelf-port"))
-	RootCmd.PersistentFlags().String("syslog-output-addr", "127.0.0.1", "UDP target for SyslogOut")
-	viper.BindPFlag("syslog-output-addr", RootCmd.PersistentFlags().Lookup("syslog-output-addr"))
-	*/
+	RootCmd.PersistentFlags().Bool("enable-zipkin", false, "Start http-server with zipkin tracing")
+	viper.BindPFlag("enable-zipkin", RootCmd.PersistentFlags().Lookup("enable-zipkin"))
+	RootCmd.PersistentFlags().String(
+		"zipkin-url",
+		"http://localhost:9411/api/v1/spans",
+		"URL to zipkin server",
+	)
 }
